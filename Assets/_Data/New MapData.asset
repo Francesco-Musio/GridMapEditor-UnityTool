@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e359161572209af4c9a384141681c677, type: 3}
-  m_Name: Level1.1
+  m_Name: New MapData
   m_EditorClassIdentifier: 
-  mapWidth: 0
-  mapLenght: 0
   map:
+    mapWidth: 8
+    mapHeight: 8
     rows:
-    - row: 01010101010101
-    - row: 01010101010101
-    - row: 01010101010101
-    - row: 01010101010101
-    - row: 01010101010101
-    - row: 01010101010101
-    - row: 01010101010101
+    - row: 0000000000000000
+    - row: 0000000000000000
+    - row: 0000000000000000
+    - row: 0000000000000000
+    - row: 0000000000000000
+    - row: 0000000000000000
+    - row: 0000000000000000
+    - row: 0000000000000000

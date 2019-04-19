@@ -2,15 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class MatrixLayout
+namespace Map
 {
     [System.Serializable]
-    public struct rowData
+    public class MatrixLayout
     {
-        public bool[] row;
+        [System.Serializable]
+        public class rowData
+        {
+            public bool[] row;
+        }
+
+        public int mapWidth = 8;
+        public int mapHeight = 8;
+
+        public rowData[] rows;
     }
-
-
-    public rowData[] rows = new rowData[7];
 }
