@@ -1,10 +1,6 @@
-﻿using System.Collections;
-using System;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine;
 
-namespace Map
+namespace GridMapEditor
 {
     [System.Serializable]
     public class MatrixLayout

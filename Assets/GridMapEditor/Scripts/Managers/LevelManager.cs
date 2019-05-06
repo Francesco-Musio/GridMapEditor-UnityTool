@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Map;
+using GridMapEditor;
 
 public class LevelManager : MonoBehaviour
 {

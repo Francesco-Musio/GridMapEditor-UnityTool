@@ -3,7 +3,7 @@ using UnityEditor;
 using System.Collections;
 using System;
 
-namespace Map
+namespace GridMapEditor
 {
     [CustomPropertyDrawer(typeof(Tile))]
     public class CustomTileDisplay : PropertyDrawer
