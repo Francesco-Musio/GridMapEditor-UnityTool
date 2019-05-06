@@ -8,8 +8,6 @@ namespace Map
     {
         [SerializeField]
         private MapData mapData;
-        [SerializeField]
-        private GameObject nodePrefab;
 
         [Header("Map Options")]
         [SerializeField]
@@ -18,24 +16,19 @@ namespace Map
         #region API
         public void Init()
         {
-            MatrixLayout.rowData[] rows = mapData.map.rows;
+            rowData[] rows = mapData.map.rows;
 
             for (int i = 0; i < rows.Length; i++)
             {
-                bool[] _currentRow = rows[i].row;
+                Tile[] _currentRow = rows[i].row;
 
                 for (int j = 0; j < _currentRow.Length; j++)
-                {
-                    GameObject _newNode = Instantiate(nodePrefab, mapContainer);
+                { 
+                    GameObject _newNode = Instantiate(mapData.map.tiles[_currentRow[j].type].prefab, mapContainer);
                     _newNode.transform.position = new Vector3(i, 0, j);
 
                     INode node = _newNode.GetComponent<INode>();
                     node.Init(i, j);
-
-                    if (_currentRow[j])
-                    {
-                        _newNode.GetComponent<MeshRenderer>().material.color = Color.red;
-                    }
                 }
             }
         }

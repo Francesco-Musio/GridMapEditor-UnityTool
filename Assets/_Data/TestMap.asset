@@ -1,0 +1,108 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e359161572209af4c9a384141681c677, type: 3}
+  m_Name: TestMap
+  m_EditorClassIdentifier: 
+  map:
+    mapWidth: 8
+    mapHeight: 8
+    rows:
+    - row:
+      - type: 0
+      - type: 3
+      - type: 0
+      - type: 0
+      - type: 0
+      - type: 0
+      - type: 0
+      - type: 0
+    - row:
+      - type: 0
+      - type: 1
+      - type: 1
+      - type: 1
+      - type: 1
+      - type: 1
+      - type: 0
+      - type: 0
+    - row:
+      - type: 0
+      - type: 0
+      - type: 0
+      - type: 0
+      - type: 0
+      - type: 1
+      - type: 0
+      - type: 0
+    - row:
+      - type: 0
+      - type: 0
+      - type: 0
+      - type: 0
+      - type: 0
+      - type: 1
+      - type: 0
+      - type: 0
+    - row:
+      - type: 0
+      - type: 0
+      - type: 0
+      - type: 1
+      - type: 1
+      - type: 1
+      - type: 0
+      - type: 0
+    - row:
+      - type: 0
+      - type: 0
+      - type: 0
+      - type: 1
+      - type: 0
+      - type: 0
+      - type: 0
+      - type: 0
+    - row:
+      - type: 0
+      - type: 0
+      - type: 0
+      - type: 1
+      - type: 0
+      - type: 0
+      - type: 0
+      - type: 0
+    - row:
+      - type: 0
+      - type: 0
+      - type: 0
+      - type: 2
+      - type: 0
+      - type: 0
+      - type: 0
+      - type: 0
+    tiles:
+    - name: Default
+      prefab: {fileID: 2870039889017219748, guid: b621bf8634611c847b1107717abda27a,
+        type: 3}
+    - name: Path
+      prefab: {fileID: 2870039889017219748, guid: a4ceae7da9277ce489030c7a1ff4dabd,
+        type: 3}
+    - name: Start
+      prefab: {fileID: 2870039889017219748, guid: d9bd4b679c149504e8e03fa6596d568d,
+        type: 3}
+    - name: Finish
+      prefab: {fileID: 2870039889017219748, guid: b440246695a90094797f824698a300c7,
+        type: 3}
+    tilesColor:
+    - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    - {r: 0.015686274, g: 0.01843084, b: 1, a: 1}
+    - {r: 0.015686274, g: 1, b: 0.088170774, a: 1}
+    - {r: 1, g: 0.015686274, b: 0.078604564, a: 1}

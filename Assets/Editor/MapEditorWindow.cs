@@ -16,7 +16,7 @@ public class MapEditorWindow : EditorWindow
     {
         Rect newPosition = new Rect();
         newPosition.x = 36f;
-        newPosition.y = 18f;
+        newPosition.y = 8f;
         newPosition.height = 18f;
         newPosition.width = 18f;
 
@@ -24,6 +24,8 @@ public class MapEditorWindow : EditorWindow
             Mathf.Max(18f * (property.FindPropertyRelative("mapWidth").intValue + 3), 116f), 
             18f * (property.FindPropertyRelative("mapHeight").intValue + 10));
         this.maxSize = this.minSize;
+
+        property.FindPropertyRelative("tilesColor").arraySize = property.FindPropertyRelative("tiles").arraySize;
 
         #region Grid Section
         // draw upper indexes
@@ -54,36 +56,59 @@ public class MapEditorWindow : EditorWindow
             newPosition.x = 18f;
             newPosition.y += 18f;
         }
+
+        CustomTileDisplay.OnClick += HandleRepaint;
         #endregion
 
-        #region Start Section
+        //#region Start Section
+        //newPosition.width = 18f * (property.FindPropertyRelative("mapWidth").intValue + 3);
+        //EditorGUI.LabelField(newPosition, "Start Position");
+        //newPosition.y += 18f;
+
+        //Rect tempRect = new Rect(newPosition.x, newPosition.y, newPosition.width - 36f, newPosition.height);
+        //EditorGUIUtility.labelWidth = tempRect.width - 18f * property.FindPropertyRelative("mapWidth").intValue;
+        //property.FindPropertyRelative("startX").intValue = EditorGUI.IntField(tempRect, new GUIContent("x"), property.FindPropertyRelative("startX").intValue);
+        //newPosition.y += 18f;
+
+        //tempRect = new Rect(newPosition.x, newPosition.y, newPosition.width -36f, newPosition.height);
+        //property.FindPropertyRelative("startY").intValue = EditorGUI.IntField(tempRect, "y", property.FindPropertyRelative("startY").intValue);
+        //newPosition.y += 18f;
+        //#endregion
+
+        //#region End Section
+        //newPosition.width = 18f * (property.FindPropertyRelative("mapWidth").intValue + 3);
+        //EditorGUI.LabelField(newPosition, "End Position");
+        //newPosition.y += 18f;
+
+        //tempRect = new Rect(newPosition.x, newPosition.y, newPosition.width - 36f, newPosition.height);
+        //EditorGUIUtility.labelWidth = tempRect.width - 18f * property.FindPropertyRelative("mapWidth").intValue;
+        //property.FindPropertyRelative("endX").intValue = EditorGUI.IntField(tempRect, new GUIContent("x"), property.FindPropertyRelative("endX").intValue);
+        //newPosition.y += 18f;
+
+        //tempRect = new Rect(newPosition.x, newPosition.y, newPosition.width - 36f, newPosition.height);
+        //property.FindPropertyRelative("endY").intValue = EditorGUI.IntField(tempRect, "y", property.FindPropertyRelative("endY").intValue);
+        //newPosition.y += 18f;
+        //#endregion
+
+        #region EnumColors
+        newPosition.y += 10f;
         newPosition.width = 18f * (property.FindPropertyRelative("mapWidth").intValue + 3);
-        EditorGUI.LabelField(newPosition, "Start Position");
+        EditorGUI.LabelField(newPosition, "Tile Colors");
         newPosition.y += 18f;
         
-        Rect tempRect = new Rect(newPosition.x, newPosition.y, newPosition.width - 36f, newPosition.height);
-        EditorGUIUtility.labelWidth = tempRect.width - 18f * property.FindPropertyRelative("mapWidth").intValue;
-        property.FindPropertyRelative("startX").intValue = EditorGUI.IntField(tempRect, new GUIContent("x"), property.FindPropertyRelative("startX").intValue);
-        newPosition.y += 18f;
+        for (int i = 0; i < property.FindPropertyRelative("tiles").arraySize; i++)
+        {
+            property.FindPropertyRelative("tilesColor").GetArrayElementAtIndex(i).colorValue = EditorGUI.ColorField(
+                    newPosition,
+                    new GUIContent(property.FindPropertyRelative("tiles").GetArrayElementAtIndex(i).FindPropertyRelative("name").stringValue),
+                    property.FindPropertyRelative("tilesColor").GetArrayElementAtIndex(i).colorValue,
+                    showEyedropper: true,
+                    showAlpha: false,
+                    hdr: false
+                );
 
-        tempRect = new Rect(newPosition.x, newPosition.y, newPosition.width -36f, newPosition.height);
-        property.FindPropertyRelative("startY").intValue = EditorGUI.IntField(tempRect, "y", property.FindPropertyRelative("startY").intValue);
-        newPosition.y += 18f;
-        #endregion
-
-        #region End Section
-        newPosition.width = 18f * (property.FindPropertyRelative("mapWidth").intValue + 3);
-        EditorGUI.LabelField(newPosition, "End Position");
-        newPosition.y += 18f;
-
-        tempRect = new Rect(newPosition.x, newPosition.y, newPosition.width - 36f, newPosition.height);
-        EditorGUIUtility.labelWidth = tempRect.width - 18f * property.FindPropertyRelative("mapWidth").intValue;
-        property.FindPropertyRelative("endX").intValue = EditorGUI.IntField(tempRect, new GUIContent("x"), property.FindPropertyRelative("endX").intValue);
-        newPosition.y += 18f;
-
-        tempRect = new Rect(newPosition.x, newPosition.y, newPosition.width - 36f, newPosition.height);
-        property.FindPropertyRelative("endY").intValue = EditorGUI.IntField(tempRect, "y", property.FindPropertyRelative("endY").intValue);
-        newPosition.y += 18f;
+            newPosition.y += 20f;
+        }
         #endregion
 
         #region Reset Button
@@ -100,10 +125,17 @@ public class MapEditorWindow : EditorWindow
 
                 for (int j = 0; j < row.arraySize; j++)
                 {
-                    row.GetArrayElementAtIndex(j).boolValue = false;
+                    row.GetArrayElementAtIndex(j).FindPropertyRelative("type").intValue = 0;
                 }
             }
         }
         #endregion
     }
+
+    #region Handlers
+    private void HandleRepaint()
+    {
+        Repaint();
+    }
+    #endregion
 }
